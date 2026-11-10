@@ -1,0 +1,209 @@
+<!doctype html>
+<html lang="da">
+<head>
+<meta charset="utf-8">
+<base href="/">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#faf9f6">
+<meta name="application-name" content="Yack">
+<meta name="description" content="Yet another checklist, kinda. En enkel tjekliste med noter og trofæer.">
+<title>Yack — Yet another checklist, kinda</title>
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="media.css">
+<link rel="stylesheet" href="editor.css">
+<script src="translations.js" defer></script>
+<script src="i18n.js" defer></script>
+<script src="tabs.js" defer></script>
+<script src="sound.js" defer></script>
+<script src="scribbles.js" defer></script>
+<script src="confetti.js" defer></script>
+<script src="stats.js" defer></script>
+<script src="recurrence.js" defer></script>
+<script src="editor-ui.js" defer></script>
+<script src="schedule-editor.js" defer></script>
+<script src="list-editor.js" defer></script>
+<script src="reminders.js" defer></script>
+<script src="media-model.js" defer></script>
+<script src="media.js" defer></script>
+<script src="lists.js" defer></script>
+<script src="emphasis.js" defer></script>
+<script src="tasks.js" defer></script>
+<script src="task-json.js" defer></script>
+<script src="task-versions.js" defer></script>
+<script src="formatting.js" defer></script>
+<script src="deferral.js" defer></script>
+<script src="ink.js" defer></script>
+<script src="task-drag.js" defer></script>
+<script src="achievements.js" defer></script>
+<script src="achievement-ui.js" defer></script>
+<script src="xor-ui.js" defer></script>
+<script src="note-paper.js" defer></script>
+<script src="note-drag.js" defer></script>
+<script src="mobile-notes.js" defer></script>
+<script src="writing.js" defer></script>
+<script src="sync-data.js" defer></script>
+<script src="sync.js" defer></script>
+<script src="reminder-ui.js" defer></script>
+<script src="recovery.js" defer></script>
+<script src="app.js" defer></script>
+<link rel="stylesheet" href="emphasis.css">
+<link rel="stylesheet" href="section-typography.css">
+</head>
+<body>
+<div class="menu-zone">
+<div class="menu-hover-area" aria-hidden="true"><div class="menu-hover-band band-near"></div><div class="menu-hover-band band-middle"></div><div class="menu-hover-band band-far"></div></div>
+<nav class="top-menu" aria-label="Menu">
+<button class="quiet-button crown-button" id="crown" type="button" aria-label="Vis dagens trofæer" aria-pressed="false" aria-controls="achievements-view"><span class="button-label" aria-hidden="true">Trofæer</span><svg class="crown-drawing" viewBox="0 0 44 40" aria-hidden="true"><path d="M7 29 Q5 17 4 10 L15 18 22 5 29 18 40 10 Q38 20 36 29 Z M8 32 Q21 35 35 32 M12 26 Q22 28 32 26"/><path class="crown-detail" d="M5 11 8 29 36 30 M16 18 22 6 29 19 M9 33 Q22 36 35 33"/></svg></button>
+<button class="quiet-button edit-button" id="edit" type="button" aria-label="Rediger opgaver" aria-controls="editor" aria-pressed="false"><span class="button-label" aria-hidden="true">Rediger</span><svg viewBox="0 0 40 40" aria-hidden="true"><path d="M8 25 Q16 15 27 5 Q30 3 33 7 Q35 9 32 12 L14 31 5 35 Z M9 25l5 6 M26 6l7 6 M12 27l18-19 M5 35l4-6"/><path class="pencil-detail" d="M8 25 27 5 M14 31 32 12 M5 35 9 33"/></svg></button>
+<button class="quiet-button profile-button" id="sync-toggle" type="button" aria-label="Profil" aria-expanded="false" aria-controls="sync-panel"><span class="button-label" id="profile-label" aria-hidden="true">Profil</span><svg viewBox="0 0 40 40" aria-hidden="true"><path d="M13 12 Q12 4 20 4 Q28 4 27 12 Q28 21 20 22 Q12 21 13 12Z M5 35 Q5 24 14 25 Q20 29 26 25 Q35 25 35 35 Q20 38 5 35Z"/><path class="profile-detail" d="M15 7 Q18 4 22 6 M8 33 Q9 27 13 27 M29 28 Q32 30 32 34"/></svg></button>
+</nav>
+  <aside id="profile-quick" class="profile-quick" aria-label="Profilgenveje">
+    <div class="profile-quick-identity"><button id="profile-open" class="quiet-button" type="button"><span id="profile-quick-name">Profil</span></button><a id="profile-quick-signout" href="/signout-with-chatgpt?return_to=%2F" target="_top" hidden>(Log ud)</a></div>
+    <a id="profile-quick-signin" href="/signin-with-chatgpt?return_to=%2F" target="_top">Log ind</a>
+  </aside>
+  <aside id="sync-choice-hint" class="profile-hint sync-choice-hint" aria-label="Vælg opgaveliste" hidden><button id="sync-choice-close" type="button" aria-label="Luk listevalg">×</button><p id="sync-choice-message"></p><dl class="sync-list-dates"><dt>På denne enhed</dt><dd id="sync-choice-local-date"></dd><dt>På din profil</dt><dd id="sync-choice-cloud-date"></dd></dl><div class="sync-choice-actions"><button id="sync-choice-cloud" type="button">Hent fra profilen</button><button id="sync-choice-local" type="button">Behold den lokale</button></div></aside>
+  <aside id="profile-hint" class="profile-hint" hidden><span>Klik her for at logge ind</span><button id="profile-hint-close" type="button" aria-label="Luk loginhint">×</button></aside>
+</div>
+  <section id="sync-panel" class="sync-panel profile-page" aria-label="Profil" hidden>
+    <div class="profile-page-heading"><button class="quiet-button" id="sync-close" type="button" aria-label="Tilbage til listen">← Tilbage</button><h1>Profil</h1></div>
+    <div class="profile-section profile-paper"><span class="profile-staples" aria-hidden="true"><i></i><i></i><i></i><i></i></span><div class="profile-section-heading"><h2>Konto</h2><div class="profile-actions"><a class="quiet-button" id="sync-signin" href="/signin-with-chatgpt?return_to=%2F" target="_top">Log ind med ChatGPT</a><a class="quiet-button" id="sync-signout" href="/signout-with-chatgpt?return_to=%2F" target="_top" hidden>Log ud</a></div></div><p id="sync-account" class="profile-identity"></p><p id="profile-account-help">Samme liste på telefon og computer.</p>
+    </div><div class="profile-section"><div class="profile-section-heading"><h2>Synkronisering</h2><button class="quiet-button" id="sync-retry" type="button">Synkronisér nu</button></div><p id="sync-status" role="status">Log ind for at dele listen mellem dine enheder.</p>
+    <div id="sync-list-comparison" hidden><p id="sync-comparison"></p><dl class="sync-list-dates"><dt>På denne enhed</dt><dd id="sync-local-date"></dd><dt>På din profil</dt><dd id="sync-cloud-date"></dd></dl></div>
+    <div id="sync-initial" class="profile-choice" hidden><h3>Vælg din startliste</h3><p id="sync-summary"></p><p>Der gemmes en lokal sikkerhedskopi før valget.</p><button class="quiet-button" id="sync-use-cloud" type="button">Brug den fælles liste</button><button class="quiet-button" id="sync-use-local" type="button">Brug denne enheds liste</button></div>
+    <div id="sync-conflicts" class="profile-choice" hidden><h3>Ændringer at vælge imellem</h3><ul id="sync-conflict-list"></ul><p>Andre ændringer flettes automatisk. Dette valg gælder kun felter med en konflikt.</p><button class="quiet-button" id="sync-keep-cloud" type="button">Brug de fælles ændringer</button><button class="quiet-button" id="sync-keep-local" type="button">Brug denne enheds ændringer</button></div>
+    </div>
+    <section class="profile-section" aria-labelledby="language-title">
+      <h2 id="language-title">Sprog</h2>
+      <label class="profile-language" for="yack-language">Vælg sprog
+        <select id="yack-language">
+          <option value="auto">Automatisk (browser)</option>
+          <option value="en" lang="en">English</option>
+          <option value="da" lang="da">Dansk</option>
+        </select>
+      </label>
+      <p class="profile-caption">Sproget gemmes på denne enhed.</p>
+      <p id="yack-language-message" role="status"></p>
+    </section>
+    <section id="profile-reminders" class="profile-section profile-paper" aria-labelledby="reminders-title">
+      <span class="profile-staples" aria-hidden="true"><i></i><i></i><i></i><i></i></span><h2 id="reminders-title">Påmindelser</h2>
+      <p class="profile-caption">Engangsopgaver fra ChatGPT eller herfra.</p>
+      <ul id="reminder-list" class="reminder-list"></ul><p id="reminder-empty">Ingen ventende påmindelser.</p>
+      <details class="profile-reminder-create" name="profile-reminder"><summary>+ Tilføj påmindelse</summary><form id="reminder-add" class="reminder-row"><label>Opgave<input id="reminder-add-text" type="text" maxlength="300" required placeholder="Hvad skal du huske?"></label><label>Dato<input id="reminder-add-date" type="date" required></label><button class="quiet-button" type="submit">Tilføj</button></form></details>
+      <details class="profile-help"><summary>Om påmindelser</summary><p>Vises på den valgte dato og bliver stående, til du afslutter eller udskyder dem. Dansk tid · Ingen pushnotifikationer.</p></details>
+      <p id="reminder-message" role="status"></p>
+    </section>
+    <section class="profile-section profile-stats" aria-labelledby="profile-stats-title"><h2 id="profile-stats-title">Statistik</h2><dl class="stats-grid"><div><dt>Fuldførte opgaver</dt><dd id="stat-checked">0</dd></div><div><dt>Dage brugt</dt><dd id="stat-days">0</dd></div><div><dt>Trofæer</dt><dd id="stat-trophies">0</dd></div><div><dt>Udskudte opgaver</dt><dd id="stat-deferred">0</dd></div><div><dt>Oprettede noter</dt><dd id="stat-notes">0</dd></div><div><dt>Længste stime · dage</dt><dd id="stat-longest">0</dd></div><div><dt>Nuværende stime · dage</dt><dd id="stat-current">0</dd></div></dl><details class="profile-help"><summary>Sådan tæller vi</summary><p>Samlet over tid. En dag tæller, når du åbner siden. Ved synkronisering beholder vi dagens højeste tal.</p></details></section>
+    <div class="profile-data profile-paper" id="profile-data"><span class="profile-staples" aria-hidden="true"><i></i><i></i><i></i><i></i></span><h2>Dine data</h2><div class="profile-actions"><button class="quiet-button profile-danger" id="profile-clear" type="button">Ryd mine data</button><button class="quiet-button profile-danger" id="profile-delete" type="button" hidden>Slet min profil</button></div><details class="profile-help"><summary>Rydning og sletning</summary><p>Rydning gemmer en sikkerhedskopi i historikken. Sletning af profilen fjerner også sikkerhedskopierne.</p></details>
+    <div id="profile-confirm" class="profile-confirm" hidden><p id="profile-confirm-message"></p><label id="profile-delete-word" class="profile-delete-word" hidden>Skriv DELETE for at bekræfte<input id="profile-delete-text" type="text" autocomplete="off" autocapitalize="characters" spellcheck="false" aria-label="Skriv DELETE for at bekræfte sletning" /></label><button class="quiet-button profile-danger" id="profile-confirm-action" type="button">Bekræft</button><button class="quiet-button" id="profile-cancel" type="button">Annuller</button></div></div>
+  </section>
+<dialog id="sync-choice-confirm" class="sync-choice-confirm" aria-labelledby="sync-choice-confirm-title"><h2 id="sync-choice-confirm-title">Skift liste?</h2><p id="sync-choice-confirm-message"></p><p class="sync-backup-note">Der gemmes lokale sikkerhedskopier før skiftet.</p><div><button id="sync-choice-confirm-cancel" class="quiet-button" type="button">Annuller</button><button id="sync-choice-confirm-ok" class="quiet-button" type="button">Ja, fortsæt</button></div></dialog>
+<main aria-label="Yack">
+  <header class="page-header"><h1 id="view-title">Godmorgen!</h1><div class="page-actions"><button id="new-note" class="quiet-button new-note" type="button" aria-label="Ny note" aria-controls="writing-pad"><span class="new-note-plus" aria-hidden="true">+</span><svg viewBox="0 0 28 28" aria-hidden="true"><path d="M5 4 Q14 3 24 5 L23 20 17 25 4 24Z M17 25 17 19 23 20 M9 10 19 10 M9 15 18 15"/></svg><span class="new-note-label" aria-hidden="true">Ny note</span></button>
+    <button id="plan-task" class="quiet-button new-note plan-task-button" type="button" aria-label="Planlæg opgave" aria-haspopup="dialog" aria-controls="task-planner">
+      <span class="new-note-plus" aria-hidden="true">+</span><svg viewBox="0 0 28 28" aria-hidden="true"><path d="M5 6 Q14 5 24 6 L23 25 Q14 26 4 24Z M5 11 Q14 10 23 11 M9 3 L9 8 M19 3 L19 8"/><text id="plan-task-calendar-day" x="13.7" y="18.4" text-anchor="middle" dominant-baseline="central"></text></svg>
+      <span class="new-note-label" aria-hidden="true">Planlæg opgave</span>
+    </button></div>
+  </header>
+  <dialog id="task-planner" aria-labelledby="task-planner-title">
+    <h2 id="task-planner-title">Planlæg opgave</h2>
+    <button id="plan-task-cancel" class="plan-task-close" type="button" aria-label="Annuller planlægning" title="Annuller"></button>
+    <form id="plan-task-form">
+      <div class="plan-task-timing">
+      <label>Hvornår?
+        <select id="plan-task-preset" autofocus>
+          <option value="now" selected>Nu</option>
+          <option value="tomorrow">I morgen</option>
+          <option value="weekend">Denne weekend</option>
+          <option value="specific">Vælg dato og tid</option>
+        </select>
+      </label>
+      <div id="plan-task-preview"><span>Dato</span><time id="plan-task-preview-date" aria-live="polite"></time></div>
+      <div id="plan-task-custom" hidden>
+        <label>Dato<input id="plan-task-date" type="date" disabled></label>
+        <label>Tid (valgfri)<input id="plan-task-time" type="time" disabled></label>
+      </div>
+      </div>
+      <label>Opgave<input id="plan-task-text" type="text" maxlength="300" required></label>
+      <details id="plan-task-settings" class="plan-task-settings">
+        <summary id="plan-task-settings-toggle" aria-label="Flere indstillinger" title="Flere indstillinger"></summary>
+        <div class="plan-task-options">
+          <label><input id="plan-task-keep" type="checkbox"> Behold, indtil opgaven er færdig</label>
+          <div id="plan-task-effects"></div>
+        </div>
+      </details>
+      <p id="plan-task-message" role="status"></p>
+      <div class="plan-task-actions">
+        <button class="quiet-button" type="submit">Tilføj opgave</button>
+      </div>
+    </form>
+  </dialog>
+  <dialog id="note-composer" aria-label="Skriv din note"><section id="writing-pad" class="writing-pad" hidden></section></dialog>
+  <p id="active-lists" class="active-lists" hidden></p>
+  <div class="view-stage">
+    <ul class="checklist" id="tasks-view" aria-label="Tjekliste til arbejdsstart"></ul>
+
+    <section id="achievements-view" aria-label="Trofæer" hidden>
+      <ul id="achievement-list"></ul>
+    </section>
+  </div>
+  <p class="storage-message" id="storage-message" role="status" hidden></p>
+  <section id="startup-recovery" class="startup-recovery" aria-label="Gendan adgang til din liste" hidden>
+    <h2>Åbn din liste igen</h2>
+    <p class="recovery-status" role="status"></p>
+    <div class="recovery-actions"></div>
+  </section>
+<dialog id="editor" aria-labelledby="editor-title">
+  <div class="editor-header"><button class="quiet-button back-button" id="back-editor" type="button">← Tilbage</button><h2 id="editor-title">Dine opgaver</h2><button class="quiet-button close-button" id="close-editor" type="button" aria-label="Luk">×</button></div>
+  <div class="editor-content">
+  <p id="editor-message" class="form-message" role="status" hidden></p>
+  <section id="list-manager" aria-label="Lister og fælles tidsplaner"></section>
+  <div class="editor-toolbar"><div><strong id="editor-task-title">Opgaver</strong><span id="editor-count" class="editor-muted"></span><span class="editor-help"><button class="editor-help-trigger" type="button" aria-label="Hjælp til rækkefølge og afhængigheder">?</button><span class="editor-tooltip" role="tooltip">Træk i håndtaget for at ændre rækkefølge. Træk mod højre for at gøre opgaven afhængig af opgaven ovenover. Piletaster kan også bruges.</span></span></div><div class="editor-actions"><a class="editor-chatgpt-link" href="https://chatgpt.com/?prompt=%5B%40Yack%5D%28plugin%3A%2F%2Fdev-17c082d9052881918fae0f3e035fff9a%40openai-curated-remote%29&amp;disable_auto_send=true" target="_blank" rel="noopener noreferrer" title="Åbn en ny ChatGPT-chat med Yack valgt"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M10 3H4a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-6M12 3h5v5M17 3l-8 8"/></svg><span>Rediger med ChatGPT</span></a><span class="editor-autosave">Gemmes automatisk</span></div></div>
+  <div class="editor-columns" aria-hidden="true"><span></span><span>Opgave / valg</span><span>Type</span><span>Tidsplan</span><span></span></div>
+  <ul id="editor-list" aria-label="Alle opgaver"></ul>
+  <button class="quiet-button" id="add" type="button" aria-expanded="false" aria-controls="add-form">+ Tilføj opgave</button>
+  <form id="add-form" hidden>
+    <label class="sr-only" for="task-text">Ny opgave</label><input id="task-text" type="text" placeholder="Ny opgave…" required maxlength="300" autocomplete="off">
+    <div class="form-bottom"><button class="quiet-button" type="submit">Tilføj</button></div>
+    <p class="form-message" id="form-message" role="status" hidden></p>
+  </form>
+  <details class="editor-data"><summary>Versioner og data</summary><div class="editor-data-content">
+  <div class="task-versions"><label for="task-versions">Versioner</label><select id="task-versions" aria-label="Gemte versioner af opgavelisten"></select><button class="quiet-button" id="restore-version" type="button">Gendan</button></div>
+  <div class="task-transfer">
+    <button class="quiet-button" id="export-tasks" type="button">Eksportér JSON</button>
+    <button class="quiet-button" id="import-tasks" type="button">Importér JSON</button>
+    <input id="import-file" type="file" accept=".json,application/json" hidden>
+    <button class="quiet-button" id="undo-import" type="button" hidden>Fortryd import</button>
+  </div>
+  <div class="import-preview" id="import-preview" hidden>
+    <p class="form-message" id="import-summary" role="status"></p>
+    <button class="quiet-button" id="confirm-import" type="button">Erstat liste</button>
+    <button class="quiet-button" id="cancel-import" type="button">Annuller</button>
+  </div>
+  </div></details>
+  </div>
+</dialog>
+  <aside id="notes-board" aria-label="Dagens noter" hidden></aside>
+</main>
+<div id="mobile-notes-layer"></div>
+<dialog id="mobile-note-view" class="mobile-note-modal" aria-label="Note"><button id="mobile-note-close" class="quiet-button" type="button" aria-label="Luk note">×</button><div id="mobile-note-content"></div></dialog>
+<div id="mobile-note-drag-shield" aria-hidden="true" hidden></div>
+<aside id="mobile-note-drop" aria-label="Læg noten tilbage nederst" hidden>Tilbage til bunden</aside>
+<aside id="achievement-toast" role="status" aria-live="polite" aria-atomic="true" hidden>
+
+  <div class="achievement-toast-card">
+  <div class="gold-glints" aria-hidden="true"><span>✦</span><span>✧</span><span>✦</span><span>✧</span></div>
+  <span id="achievement-toast-trophy" aria-hidden="true"></span>
+  <div class="achievement-toast-copy"><span id="achievement-toast-title"></span><span id="achievement-toast-description"></span></div>
+  <button class="quiet-button" id="close-toast" type="button" aria-label="Luk trofæ">×</button>
+  </div>
+</aside>
+<div id="celebration-launchers" aria-hidden="true" hidden>
+  <div id="launcher-0" class="cannon-launcher"><div class="cannon-recoil"><svg class="confetti-cannon" viewBox="0 0 96 80"><path class="cannon-body" d="M17 40 Q39 28 68 9 L84 39 Q53 49 27 55 Z"/><path d="M17 40 10 43 Q8 49 14 56 L27 55 M30 54l8 15q4 3 8-1l-6-17 M68 9 C73 4 89 32 84 39 C79 45 63 16 68 9Z"/><path class="cannon-detail" d="M20 41 Q42 31 66 13 M29 52 Q54 46 79 38 M72 12 Q77 24 82 36 M35 56l7 11 M12 45l6 8"/><circle class="cannon-muzzle" cx="79" cy="24" r="1" opacity="0"/></svg></div></div>
+  <div id="launcher-1" class="cannon-launcher"><div class="cannon-recoil"><svg class="confetti-cannon" viewBox="0 0 96 80"><path class="cannon-body" d="M17 40 Q39 28 68 9 L84 39 Q53 49 27 55 Z"/><path d="M17 40 10 43 Q8 49 14 56 L27 55 M30 54l8 15q4 3 8-1l-6-17 M68 9 C73 4 89 32 84 39 C79 45 63 16 68 9Z"/><path class="cannon-detail" d="M20 41 Q42 31 66 13 M29 52 Q54 46 79 38 M72 12 Q77 24 82 36 M35 56l7 11 M12 45l6 8"/><circle class="cannon-muzzle" cx="79" cy="24" r="1" opacity="0"/></svg></div></div>
+  <div id="launcher-2" class="cannon-launcher"><div class="cannon-recoil"><svg class="confetti-cannon" viewBox="0 0 96 80"><path class="cannon-body" d="M17 40 Q39 28 68 9 L84 39 Q53 49 27 55 Z"/><path d="M17 40 10 43 Q8 49 14 56 L27 55 M30 54l8 15q4 3 8-1l-6-17 M68 9 C73 4 89 32 84 39 C79 45 63 16 68 9Z"/><path class="cannon-detail" d="M20 41 Q42 31 66 13 M29 52 Q54 46 79 38 M72 12 Q77 24 82 36 M35 56l7 11 M12 45l6 8"/><circle class="cannon-muzzle" cx="79" cy="24" r="1" opacity="0"/></svg></div></div>
+  <div id="launcher-3" class="cannon-launcher"><div class="cannon-recoil"><svg class="confetti-cannon" viewBox="0 0 96 80"><path class="cannon-body" d="M17 40 Q39 28 68 9 L84 39 Q53 49 27 55 Z"/><path d="M17 40 10 43 Q8 49 14 56 L27 55 M30 54l8 15q4 3 8-1l-6-17 M68 9 C73 4 89 32 84 39 C79 45 63 16 68 9Z"/><path class="cannon-detail" d="M20 41 Q42 31 66 13 M29 52 Q54 46 79 38 M72 12 Q77 24 82 36 M35 56l7 11 M12 45l6 8"/><circle class="cannon-muzzle" cx="79" cy="24" r="1" opacity="0"/></svg></div></div>
+</div>
+<div id="confetti" aria-hidden="true"></div>
+</body>
+</html>

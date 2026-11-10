@@ -1,0 +1,45 @@
+@font-face{font-family:'Yack Fraunces';font-style:normal;font-weight:400;font-display:swap;src:url('fonts/fraunces-display.woff') format('woff')}
+/* Typography belongs to these two views. Checklist, notes and editor inherit
+   their existing fonts; trophy artwork and the main-page toast stay unchanged. */
+.profile-page,#achievements-view{--section-ui:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;--section-display:'Yack Fraunces',Georgia,serif;font-family:var(--section-ui);font-size:14px;line-height:1.5}
+/* Profile: handwritten page title, printed section headings and quiet UI text. */
+.profile-page h2{font:400 21px/1.3 var(--section-display);letter-spacing:-.015em}
+.profile-page h3{font:400 18px/1.35 var(--section-display)}
+.profile-page p{font:400 14px/1.55 var(--section-ui);color:#6c685f;margin:7px 0 9px}
+.profile-page .profile-identity{font:600 17px/1.45 var(--section-ui);color:#39372f;overflow-wrap:anywhere}
+.profile-page .quiet-button,.profile-page .profile-reminder-create>summary,.profile-page #sync-close{font:500 13px/1.3 var(--section-ui);min-height:36px;padding:7px 10px!important}
+.profile-page .profile-caption{font:400 13px/1.5 var(--section-ui)}
+.profile-page .profile-help{font:400 12px/1.5 var(--section-ui)}
+.profile-page .profile-help p{font:400 12px/1.55 var(--section-ui)}
+.profile-page .profile-help>summary{min-height:30px}
+.profile-page .sync-list-dates{font:400 12px/1.5 var(--section-ui);font-variant-numeric:tabular-nums}
+.profile-page .sync-list-dates dt{font-weight:500}
+.profile-page #sync-conflict-list{font:400 13px/1.5 var(--section-ui)}
+.profile-page .reminder-row label{font:500 12px/1.4 var(--section-ui)}
+.profile-page .reminder-row input{font:400 16px/1.4 var(--section-ui);min-height:38px}
+.profile-page .reminder-title{font:500 14px/1.45 var(--section-ui)}
+.profile-page .reminder-meta{font:400 12px/1.4 var(--section-ui);font-variant-numeric:tabular-nums}
+.profile-page .reminder-meta .reminder-state{font:500 11px/1.3 var(--section-ui)}
+.profile-page .reminder-saved{font:400 11px/1.4 var(--section-ui)}
+.profile-page .reminder-accordion>summary{padding-block:12px;gap:5px}
+.profile-page .reminder-accordion>summary::before{top:17px}
+.profile-page .stats-grid dt{font:400 12px/1.4 var(--section-ui);color:#6c685f}
+.profile-page .stats-grid dd{font:400 30px/1.1 var(--section-display);font-variant-numeric:lining-nums tabular-nums;color:#39372f}
+.profile-page .profile-delete-word{font:500 13px/1.5 var(--section-ui)}
+.profile-page .profile-delete-word input{font:400 16px/1.4 ui-monospace,SFMono-Regular,Consolas,monospace}
+/* Trophies: warm printed titles, compact sans-serif descriptions and progress. */
+#achievements-view .achievement-title{font:400 22px/1.3 var(--section-display);letter-spacing:-.015em}
+#achievements-view .achievement-tier{font:600 10px/1.4 var(--section-ui);letter-spacing:.06em;text-transform:uppercase;margin:5px 0 3px}
+#achievements-view .achievement-description{font:400 13px/1.5 var(--section-ui);color:#777065;margin-top:0}
+#achievements-view .achievement-count{font:400 11px/1.4 var(--section-ui);font-variant-numeric:tabular-nums;color:#777065}
+#achievements-view .achievement-progress{margin-top:8px}
+#achievements-view .achievement-check,#achievements-view .trophy-plaque-text{font-family:Caveat,'Segoe Print','Bradley Hand',cursive}
+@media(max-width:600px){
+ .profile-page h2{font-size:20px}
+ .profile-page .quiet-button,.profile-page .profile-reminder-create>summary,.profile-page #sync-close{min-height:40px;font-size:12px}
+ .profile-page #profile-reminders>h2{padding-right:148px}
+ .profile-page .profile-reminder-create>summary{padding-inline:8px!important}
+ #achievements-view .achievement-title{font-size:20px}
+ #achievements-view .achievement-description{font-size:12px}
+ #achievements-view .achievement-count{font-size:11px}
+}

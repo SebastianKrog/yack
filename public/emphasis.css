@@ -1,0 +1,36 @@
+/* Emphasis stays on the lettering so checkbox targets and list layout remain still. */
+.text[data-emphasis]:not([data-emphasis='']){display:inline-block;max-width:100%;position:relative;transform-origin:50% 65%;isolation:isolate}
+.text[data-emphasis=glow]{animation:task-glow 2.8s ease-in-out infinite}
+@keyframes task-glow{0%,100%{text-shadow:0 0 2px #dfaa4244,0 0 9px #e8b74833}50%{text-shadow:0 0 3px #e2ad66bb,0 0 12px #f0bc6c99,0 0 24px #edc58566}}
+.text[data-emphasis=fire]{text-shadow:0 -1px 5px #f4ba6470,0 0 13px #eea64844}
+.emphasis-fire{position:absolute;z-index:-1;pointer-events:none;overflow:visible;left:-.15em;bottom:-.2em;width:calc(100% + .3em);height:calc(100% + 1em)}
+.fire-tongue{transform-box:fill-box;transform-origin:50% 100%;animation:flame-breathe var(--burn-duration) ease-in-out var(--burn-delay) infinite alternate}
+.fire-back{opacity:.8}.fire-front{opacity:.88;animation-name:flame-curl}
+@keyframes flame-breathe{0%{transform:scale(.8,.72) skewX(calc(var(--flame-lean) * -1));opacity:.6}34%{transform:scale(1.08,1.08) skewX(var(--flame-lean));opacity:.95}68%{transform:scale(.93,.89) skewX(0deg);opacity:.75}100%{transform:scale(1.03,1.17) skewX(var(--flame-lean));opacity:.9}}
+@keyframes flame-curl{0%{transform:scale(.87,.84) skewX(var(--flame-lean))}45%{transform:scale(1.06,1.12) skewX(calc(var(--flame-lean) * -1))}100%{transform:scale(.9,.73) skewX(1deg)}}
+.fire-ember{opacity:0;animation:ember-rise var(--ember-duration) ease-out var(--ember-delay) infinite}
+@keyframes ember-rise{0%,10%{opacity:0;transform:translate(0,0) scale(1)}22%{opacity:.85}70%{opacity:.4}100%{opacity:0;transform:translate(var(--ember-drift),-91px) scale(.2)}}
+.text[data-emphasis=pulse]{animation:task-pulse 2.1s ease-in-out infinite}
+@keyframes task-pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.055)}}
+.text[data-emphasis=wobble]{animation:task-wobble 3s ease-in-out infinite}
+@keyframes task-wobble{0%,70%,100%{transform:rotate(0)}78%{transform:rotate(-2deg)}86%{transform:rotate(2deg)}94%{transform:rotate(-1deg)}}
+.emphasis-circles{position:absolute;overflow:visible;pointer-events:none;z-index:1;animation:circle-linger 7.2s linear infinite}
+.emphasis-ring{fill:none;stroke:#39372f;stroke-width:1.45;stroke-linecap:round;stroke-linejoin:round;opacity:.74;stroke-dasharray:1;stroke-dashoffset:1;animation-duration:7.2s;animation-timing-function:cubic-bezier(.38,.08,.3,1);animation-iteration-count:infinite}
+.emphasis-ring-1{animation-name:circle-first}.emphasis-ring-2{animation-name:circle-second;stroke-width:1.15;opacity:.62}.emphasis-ring-3{animation-name:circle-third;stroke-width:1.35;opacity:.67}
+@keyframes circle-first{0%{stroke-dashoffset:1}18%,99.99%{stroke-dashoffset:0}100%{stroke-dashoffset:1}}
+@keyframes circle-second{0%,18%{stroke-dashoffset:1}36%,99.99%{stroke-dashoffset:0}100%{stroke-dashoffset:1}}
+@keyframes circle-third{0%,36%{stroke-dashoffset:1}54%,99.99%{stroke-dashoffset:0}100%{stroke-dashoffset:1}}
+@keyframes circle-linger{0%,77%{opacity:1}94%,100%{opacity:0}}
+.emphasis-word{white-space:nowrap}.emphasis-letter,.emphasis-letter-return{display:inline-block}
+.text[data-emphasis=dance] .emphasis-letter{animation:task-piano var(--dance-duration,4s) ease-in-out var(--dance-forward,0s) infinite}
+.text[data-emphasis=dance] .emphasis-letter-return{animation:task-piano var(--dance-duration,4s) ease-in-out var(--dance-back,2s) infinite}
+@keyframes task-piano{0%,10%,100%{transform:translateY(0)}4%{transform:translateY(-.18em)}}
+.scribbling .text[data-emphasis],.scribbling .emphasis-letter,.scribbling .emphasis-letter-return{animation:none!important}.scribbling .emphasis-fire,.scribbling~.emphasis-circles{display:none}
+body:has(#editor[open]) #tasks-view :is(.emphasis-circles,.emphasis-circles *,.emphasis-fire *,.text[data-emphasis],.emphasis-letter,.emphasis-letter-return),body:has(#sync-panel:not([hidden])) #tasks-view :is(.emphasis-circles,.emphasis-circles *,.emphasis-fire *,.text[data-emphasis],.emphasis-letter,.emphasis-letter-return),body:has(#achievements-view:not([hidden])) #tasks-view :is(.emphasis-circles,.emphasis-circles *,.emphasis-fire *,.text[data-emphasis],.emphasis-letter,.emphasis-letter-return){animation-play-state:paused}
+.emphasis-settings{display:flex;flex-wrap:wrap;align-items:start;gap:10px}.emphasis-settings>h3,.emphasis-settings>p{width:100%;margin:0}.emphasis-settings>label{display:grid;gap:4px;font-size:12px}.emphasis-settings input,.emphasis-settings select{font:inherit;padding:5px 6px;border:1px solid #cdd2d9;border-radius:4px;min-width:80px;background:#fff}
+@media(prefers-reduced-motion:reduce){.text[data-emphasis],.emphasis-letter,.emphasis-letter-return,.emphasis-circles,.emphasis-ring,.fire-tongue,.fire-ember{animation:none!important;transform:none!important}.text[data-emphasis]:not([data-emphasis='']):not([data-emphasis=circle]){text-decoration:underline;text-decoration-color:#b78845;text-underline-offset:.17em;text-decoration-thickness:2px}.emphasis-fire{opacity:.3}.fire-ember{display:none}.emphasis-ring{stroke-dashoffset:0}.emphasis-circles{opacity:.75}}
+
+.emphasis-choice{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;align-items:end;width:100%}
+.emphasis-choice>label{display:grid;gap:4px;min-width:0;font-size:12px}
+.emphasis-choice select{min-width:0;width:100%}
+.emphasis-sample{position:relative;display:flex;justify-content:center;align-items:center;min-width:0;min-height:42px;font:27px/1.4 Caveat,cursive}

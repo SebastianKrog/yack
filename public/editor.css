@@ -1,0 +1,187 @@
+/* Task configuration workspace: neutral, compact and separate from the checklist. */
+body:has(#editor[open]){display:block;padding:88px 24px 40px;background:#f4f6f8}
+body:has(#editor[open]) .top-menu::before{inset:0;background:#fff;border-bottom:1px solid #d8dee6;-webkit-mask-image:none;mask-image:none;-webkit-backdrop-filter:none;backdrop-filter:none}
+body:has(#editor[open]) main{width:min(1180px,100%);margin:0 auto}
+#editor{--editor-line:#d8dee6;--editor-muted:#667085;--editor-blue:#175cd3;--editor-surface:#fff;color:#1d2939;background:#fff;font:13px/1.45 system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;max-height:none;overflow:visible;border:1px solid var(--editor-line);border-radius:8px;box-shadow:0 3px 12px #18223008}
+#editor[open]{display:block}
+#editor :is(input,select,button,summary,h2,h3,label,legend,.quiet-button,.form-message){font-family:inherit;font-style:normal}
+#editor h2{font-size:20px;font-weight:650;line-height:1.3;margin:0}
+#editor h3{font-size:13px;font-weight:650;line-height:1.4;margin:0 0 16px;display:flex;gap:7px;align-items:center;color:#344054}
+#editor .editor-header{top:76px;grid-template-columns:auto 1fr auto;gap:18px;padding:16px 20px;background:#fff;border-bottom:1px solid var(--editor-line);border-radius:8px 8px 0 0;z-index:4}
+#editor .editor-header .back-button{font-size:13px;min-height:32px;padding:6px 10px!important}
+#editor .editor-header .close-button{font-size:22px;min-width:32px;min-height:32px;padding:0!important;border:0;background:transparent}
+#editor .editor-content{padding:0 0 20px}
+#editor .quiet-button{font-size:12px;line-height:1.35;font-weight:500;padding:7px 10px!important;border:1px solid #cbd3dd;border-radius:4px;background:#fff;color:#344054;text-decoration:none;min-height:32px;cursor:pointer}
+#editor .quiet-button:hover{background:#f3f6fa;border-color:#98a2b3}
+#editor :is(input,select){font-size:13px;line-height:1.4;padding:7px 9px;border:1px solid #cbd3dd;border-radius:4px;background:#fff;color:#1d2939;min-height:34px;max-width:100%}
+#editor :is(button,input,select,summary):focus-visible{outline:2px solid #84adff;outline-offset:2px}
+#editor :is(.editor-header button,.editor-help-trigger){font-family:inherit}
+#editor .editor-toolbar{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:18px 20px 14px}
+#editor .editor-toolbar>div{display:flex;align-items:center;gap:10px}
+#editor .editor-toolbar>.editor-actions{flex-wrap:wrap;justify-content:flex-end;gap:8px 16px}
+#editor .editor-chatgpt-link{display:inline-flex;align-items:center;gap:6px;min-height:32px;padding:5px 8px;border:1px solid #cbd3dd;border-radius:4px;color:#175cd3;background:#fff;font:500 12px/1.35 system-ui,sans-serif;white-space:nowrap;text-decoration:none}
+#editor .editor-chatgpt-link:hover{background:#eff4ff;border-color:#b2ccff}
+#editor .editor-chatgpt-link:focus-visible{outline:2px solid #84adff;outline-offset:2px}
+#editor .editor-chatgpt-link svg{width:14px;height:14px;flex-shrink:0;stroke:currentColor;stroke-width:1.4;stroke-linecap:round;stroke-linejoin:round}
+@media(max-width:600px){#editor .editor-toolbar{flex-wrap:wrap}#editor .editor-toolbar>.editor-actions{margin-left:auto}#editor .editor-chatgpt-link{min-height:36px}}
+
+#editor .editor-toolbar strong{font-size:15px;font-weight:650}
+#editor .editor-muted,#editor .editor-autosave{font-size:12px;color:var(--editor-muted)}
+#editor .editor-autosave:before{content:'';display:inline-block;width:6px;height:6px;margin-right:7px;background:#6b8b77;border-radius:50%}
+#editor .editor-columns,#editor-list>li{display:grid;grid-template-columns:36px minmax(200px,1fr) 148px minmax(160px,220px) 54px;column-gap:14px;align-items:start}
+#editor .editor-columns{padding:9px 20px;background:#f8fafc;border-block:1px solid var(--editor-line);color:#475467;font-size:11px;font-weight:650;letter-spacing:.025em;text-transform:uppercase}
+#editor-list{margin:0;padding:0}
+#editor-list>li{padding:14px 20px;margin:0;border-bottom:1px solid #e4e7ec;position:relative}
+#editor-list>li.tree-child:after{display:none}
+#editor-list>li:hover{background:#fcfdff}
+#editor .editor-fields{display:contents}
+#editor .order-controls{grid-column:1;grid-row:1;padding-top:2px}
+#editor .drag-handle{font-size:20px!important;letter-spacing:-3px;min-height:32px;height:34px;width:32px;border-color:transparent;background:transparent;color:#98a2b3}
+#editor .editor-name{grid-column:2;grid-row:1;min-width:0;padding-left:calc(var(--row-depth,0)*24px);position:relative}
+#editor .editor-parent{color:#667085;font-size:11px;line-height:1.4;margin-top:6px;overflow-wrap:anywhere}
+#editor .tree-child .editor-parent:before{content:'↳ ';color:#98a2b3}
+#editor .edit-text{width:100%;display:block;min-width:0;font:inherit;font-size:13px;padding:7px 9px;border:1px solid #cbd3dd;border-radius:4px;background:#fff}
+#editor .editor-type{grid-column:3;grid-row:1;padding-top:0;min-width:0}
+#editor .writing-type{display:block;font:inherit;font-size:12px;width:100%;margin:0;color:#344054}
+#editor .editor-type-badge{display:flex;align-items:center;min-height:34px;padding:7px 9px;border:1px solid #d0d5dd;background:#f9fafb;border-radius:4px;font-size:12px;color:#475467}
+#editor .xor-editor-choices{display:grid;gap:6px}
+#editor .editor-choice{display:flex;align-items:center;gap:7px}
+#editor .editor-choice-label{font-size:10px;font-weight:650;display:grid;place-items:center;flex-shrink:0;width:19px;height:22px;background:#eef2f6;color:#475467;border:1px solid #d8dee6;border-radius:3px}
+#editor .xor-editor-choices .edit-text{width:100%;flex:1}
+#editor .editor-schedule-summary{grid-column:4;grid-row:1;display:block;width:100%;text-align:left;padding:7px 9px;min-height:34px;border:1px solid transparent;border-radius:4px;background:transparent;color:#175cd3;font-size:12px;line-height:1.5;cursor:pointer;overflow-wrap:anywhere}
+#editor .editor-schedule-summary:hover{background:#eff4ff;border-color:#d1e0ff}
+#editor .editor-delete{grid-column:5;grid-row:1;min-width:0;min-height:32px;font-size:12px;border-color:transparent;color:#b42318;background:transparent;padding:7px 6px!important}
+#editor .editor-delete:hover{background:#fff1f0;border-color:#fecdca}
+#editor .editor-inspector{grid-column:2 / -1;grid-row:2;margin-top:8px;min-width:0}
+#editor .editor-settings-toggle{display:list-item;list-style-position:inside;width:fit-content;cursor:pointer;padding:3px 0;color:#475467;font-size:11px;font-weight:550;user-select:none}
+#editor .editor-inspector[open]>.editor-settings-toggle{color:#175cd3;margin-bottom:12px}
+#editor .editor-settings-panel{display:grid;grid-template-columns:minmax(190px,1fr) minmax(250px,1.5fr);gap:22px;padding:20px;background:#f8fafc;border:1px solid #dce2ea;border-radius:5px}
+#editor .editor-section{min-width:0;display:flex;flex-direction:column;align-items:stretch;gap:10px}
+#editor .editor-section h3{margin-bottom:2px}
+#editor .editor-section:last-child{grid-column:1 / -1;border-top:1px solid #dce2ea;padding-top:16px}
+#editor .editor-section:only-child{border-top:0;padding-top:0}
+#editor .editor-field-label{font-size:11px;color:#667085;margin-bottom:-7px}
+#editor .editor-owner{font-size:12px;color:#344054;border-left:3px solid #cbd5e1;padding-left:9px;overflow-wrap:anywhere}
+#editor :is(.writing-content-label,.writing-count,.editor-note-title){display:flex;flex-direction:column;align-items:flex-start;gap:6px;font-size:12px;line-height:1.4;color:#475467;margin:0}
+#editor .writing-count input{width:80px;font:inherit}
+#editor .writing-content-style{font:inherit;font-size:12px;margin:0;width:100%;border:1px solid #cbd3dd;border-radius:4px;background:#fff;padding:7px 9px}
+#editor .note-title-input{width:100%;font:inherit}
+#editor .pin-field{flex-direction:row;align-items:center;gap:16px}
+#editor .pin-picker{margin:0}
+#editor .pin-color{background:#fff;z-index:3;border-radius:5px;box-shadow:0 4px 16px #1018281a}
+#editor .xor-dependency-options{font-size:12px;gap:6px;margin:0}
+#editor .dependency-choice{font-size:11px;max-width:220px;white-space:normal;text-align:left}
+#editor .dependency-choice[aria-pressed=true]{border-color:#84adff;background:#eff4ff;color:#175cd3}
+#editor .editor-choice-actions{display:flex;gap:8px;flex-wrap:wrap}
+#editor .xor-editor-action{font-size:12px;color:#344054}
+#editor .schedule-editor{font:inherit;font-size:12px;margin:0;border:1px solid #d8dee6;border-radius:4px;background:#fff;min-width:0}
+#editor .schedule-editor>summary{padding:10px 12px;font-size:12px;font-weight:550;width:100%;cursor:pointer;color:#344054;overflow-wrap:anywhere}
+#editor .schedule-fields{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;margin:0;padding:16px;border-left:0;border-top:1px solid #e4e7ec}
+#editor .schedule-fields>label{display:flex;flex-direction:column;align-items:stretch;gap:6px;font-size:12px;color:#475467;min-width:0}
+#editor .schedule-fields input,#editor .schedule-fields select{width:100%;font:inherit;font-size:12px;min-height:34px}
+#editor .schedule-fields input[type=number]{width:96px}
+#editor .schedule-days{grid-column:1 / -1;gap:7px 12px;margin:0;padding:0;min-width:0}
+#editor .schedule-days legend{font-size:12px;color:#475467;margin-bottom:8px}
+#editor .schedule-days label{display:inline-flex;align-items:center;gap:5px;font-size:12px;color:#344054}
+#editor .schedule-days input{width:15px;min-height:15px;height:15px;accent-color:#175cd3}
+#editor .form-message{font-size:12px;line-height:1.5;padding-inline:16px;color:#b42318}
+#editor .editor-mobile-label{display:none}
+#editor #add{margin:16px 20px 0;color:#175cd3;border-color:#b2ccff;background:#f5f8ff}
+#editor #add-form{margin:12px 20px 0;padding:16px;background:#f8fafc;border:1px solid #d8dee6;border-radius:5px}
+#editor #task-text{font:inherit;font-size:13px;background:#fff;border:1px solid #cbd3dd;border-radius:4px;padding:8px 10px}
+#editor .form-bottom{margin-top:10px}
+#editor .editor-data{margin:20px 20px 0;border:1px solid #d8dee6;border-radius:5px;background:#fff}
+#editor .editor-data>summary{padding:12px 14px;cursor:pointer;font-weight:550;font-size:12px;color:#344054}
+#editor .editor-data-content{padding:0 14px 14px;border-top:1px solid #e4e7ec}
+#editor .task-versions{font-size:12px;margin:14px 0 0;gap:8px}
+#editor .task-versions select{font:inherit;font-size:12px}
+#editor .task-transfer{margin:14px 0 0;padding-top:14px;gap:8px;border-color:#e4e7ec}
+.editor-help{display:inline-flex;position:relative;vertical-align:middle;width:18px;flex-shrink:0}
+#editor .editor-help-trigger{display:grid;place-items:center;font:600 10px/1 system-ui,sans-serif;color:#667085;width:17px;height:17px;min-height:0;border:1px solid #b8c2ce;border-radius:50%;background:transparent;padding:0;cursor:help}
+.editor-tooltip{display:none;position:absolute;left:0;top:calc(100% + 7px);width:min(280px,75vw);padding:10px 12px;color:#fff;background:#253248;border-radius:5px;box-shadow:0 4px 12px #10182826;font:400 12px/1.5 system-ui,sans-serif;z-index:20;text-transform:none;letter-spacing:normal;white-space:normal}
+.editor-help:hover>.editor-tooltip,.editor-help:focus-within>.editor-tooltip{display:block}
+.editor-drag-preview{font:13px/1.45 system-ui,sans-serif;background:#fff;border:1px solid #d8dee6;box-shadow:0 4px 12px #10182820;border-radius:5px}
+.editor-drag-preview .editor-inspector{display:none}.tree-drop-label{font:12px/1.4 system-ui,sans-serif}
+@media(max-width:850px){
+ body:has(#editor[open]){padding:80px 12px 24px}
+ #editor .editor-columns,#editor-list>li{grid-template-columns:28px minmax(130px,1fr) 120px 48px;gap:10px}
+ #editor .editor-columns>span:nth-child(4){display:none}
+ #editor .editor-schedule-summary{grid-column:2 / 4;grid-row:2;padding:2px 0;min-height:24px}
+ #editor .editor-delete{grid-column:4}
+ #editor .editor-inspector{grid-column:2 / -1;grid-row:3;margin-top:0}
+ #editor .editor-settings-panel{grid-template-columns:1fr;padding:14px;gap:18px}
+ #editor .editor-section:last-child{grid-column:1}
+ #editor .editor-header{top:70px;padding:12px 14px;gap:10px}
+ #editor .editor-toolbar{padding:14px}
+ #editor .editor-columns,#editor-list>li{padding-left:14px;padding-right:14px}
+}
+@media(max-width:520px){
+ #editor .editor-columns{display:none}
+ #editor-list>li{grid-template-columns:24px minmax(0,1fr) 44px;gap:8px;padding:14px 10px}
+ #editor .editor-name{grid-column:2;grid-row:1;padding-left:min(calc(var(--row-depth,0)*16px),48px)}
+ #editor .editor-type{grid-column:2;grid-row:2;display:flex;align-items:center;gap:8px;margin-top:2px}
+ #editor .writing-type{width:auto;flex:1}
+ #editor .editor-delete{grid-column:3;grid-row:1}
+ #editor .editor-schedule-summary{grid-column:2;grid-row:3}
+ #editor .editor-inspector{grid-column:2 / -1;grid-row:4}
+ #editor .editor-mobile-label{display:inline;font-size:10px;color:#667085;margin-right:5px;font-weight:550}
+ #editor .schedule-fields{grid-template-columns:1fr;padding:12px;gap:12px}
+ #editor .schedule-days{grid-column:1}
+ #editor .editor-autosave{font-size:0}#editor .editor-autosave:before{margin-right:0}
+ #editor .editor-header h2{font-size:17px}#editor .editor-header{gap:7px}
+ #editor .editor-tooltip{left:auto;right:0}
+}
+#editor-list>li{row-gap:4px;padding-top:10px;padding-bottom:10px}#editor .editor-inspector{margin-top:3px}
+.editor-drag-preview .drag-preview-row{display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font:13px/1.45 system-ui,sans-serif;background:#fff;color:#344054;padding:12px 16px;border-bottom:1px solid #e4e7ec}
+
+body:has(#editor[open])>.menu-zone{position:fixed;inset:0 0 auto;height:76px;margin:0;z-index:6}
+
+@media(max-width:520px){#editor .editor-tooltip{position:fixed;inset:auto 16px 16px;width:auto;max-width:none;z-index:30}#editor .editor-help-trigger{width:24px;height:24px}#editor .editor-help{width:24px}#editor .editor-delete,#editor .drag-handle{min-height:40px}}
+
+/* Compact rows with continuous dependency guides, including expanded settings. */
+#editor .editor-header{padding:12px 16px;gap:14px}
+#editor .editor-toolbar{padding:12px 16px 10px}
+#editor .editor-columns,#editor-list>li{--tree-left:54px;--tree-step:18px;grid-template-columns:28px minmax(200px,1fr) 132px minmax(150px,200px) 46px;column-gap:10px;padding-left:16px;padding-right:16px}
+#editor-list>li{--tree-ink:#b3c0cf;--tree-mid:23px;padding-top:8px;padding-bottom:8px;row-gap:1px}
+#editor :is(input,select),#editor .edit-text{min-height:30px;padding:5px 8px}
+#editor .quiet-button{min-height:28px;padding:5px 8px!important}
+#editor .drag-handle{width:26px;height:30px;min-height:30px;padding:0!important}
+#editor .editor-name{padding-left:calc(var(--row-depth,0)*var(--tree-step) + 18px)}
+#editor .editor-root .editor-parent{display:none}
+#editor .editor-parent{margin-top:3px}
+#editor .tree-child .editor-parent:before{content:none}
+#editor .editor-inspector{margin-top:1px;padding-left:calc(var(--row-depth,0)*var(--tree-step) + 18px)}
+#editor .editor-settings-toggle{padding:2px 0;font-size:10px}
+#editor .editor-inspector[open]>.editor-settings-toggle{margin-bottom:7px}
+#editor .editor-settings-panel{padding:12px 14px;gap:14px;border-left:3px solid #a8bad2}
+#editor .editor-section{gap:8px}
+#editor .editor-section:last-child{padding-top:12px}
+#editor .schedule-editor>summary{padding:8px 10px}
+#editor .schedule-fields{gap:12px;padding:12px}
+#editor .editor-type-badge,#editor .editor-schedule-summary{min-height:30px;padding:5px 8px}
+#editor .editor-delete{min-height:28px;padding:5px!important}
+#editor .xor-editor-choices{gap:4px;border-left:2px solid #d6dfe9;padding-left:7px}
+#editor .editor-choice-label{height:20px;width:17px}
+#editor .editor-tree{position:absolute;inset:0 auto 0 var(--tree-left);pointer-events:none;color:var(--tree-ink);width:0}
+#editor .editor-tree>span{position:absolute;left:calc(var(--tree-level)*var(--tree-step) + 7px)}
+#editor .editor-tree-line{top:0;bottom:0;border-left:1px solid currentColor}
+#editor .editor-tree-end{bottom:auto;height:var(--tree-mid)}
+#editor .editor-tree-elbow{top:var(--tree-mid);width:var(--tree-step);border-top:1px solid currentColor}
+#editor .editor-tree-stem{top:var(--tree-mid);bottom:0;border-left:1px solid currentColor}
+#editor .editor-tree-node{top:calc(var(--tree-mid) - 2px);width:5px;height:5px;border:1px solid currentColor;border-radius:50%;background:#fff;transform:translateX(-2px)}
+#editor-list>li:is(:hover,:focus-within){--tree-ink:#4386d7;background:#f6f9ff;box-shadow:inset 3px 0 #8bb4e8}
+#editor-list>li:focus-within .editor-settings-panel{border-left-color:#4386d7}
+#editor-list>li:is(:hover,:focus-within) .xor-editor-choices{border-left-color:#8bb4e8}
+@media(max-width:850px){
+ #editor .editor-columns,#editor-list>li{--tree-left:48px;grid-template-columns:24px minmax(130px,1fr) 112px 44px;padding-left:14px;padding-right:14px}
+ #editor .editor-settings-panel{padding:12px;gap:12px}
+ #editor .editor-schedule-summary{min-height:22px;padding:1px 0}
+}
+@media(max-width:520px){
+ #editor-list>li{--tree-left:40px;--tree-step:12px;grid-template-columns:24px minmax(0,1fr) 40px;column-gap:6px;padding-left:10px;padding-right:10px}
+ #editor .editor-name,#editor .editor-inspector{padding-left:calc(var(--row-depth,0)*var(--tree-step) + 18px)}
+ #editor .editor-delete,#editor .drag-handle{min-height:36px}
+ #editor .editor-type{margin-top:0;padding-left:calc(var(--row-depth,0)*var(--tree-step) + 18px)}
+ #editor .editor-schedule-summary{padding-left:calc(var(--row-depth,0)*var(--tree-step) + 18px)}
+ #editor .editor-settings-panel{padding:10px}
+}
